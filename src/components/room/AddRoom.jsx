@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { addRoom } from "../utils/ApiFunctions";
+import RoomTypeSelector from "../common/RoomTypeSelector";
 
 const AddRoom = () => {
     const [newRoom, setNewRoom] = useState({
@@ -57,7 +58,9 @@ const AddRoom = () => {
 
                         <div className="mb-3">
                             <label htmlFor="roomType" className="form-label">Room Type</label>
-                            <div></div>
+                            <div>
+                                <RoomTypeSelector handleRoomInputChange={handleRoomInputChange} newRoom={newRoom} />
+                            </div>
                         </div>
 
                         <div className="mb-3">
@@ -67,6 +70,14 @@ const AddRoom = () => {
                         <div className="mb-3">
                             <label htmlFor="roomPhoto" className="form-label">Room Photo</label>
                             <input id="photo" name="photo" type="file" className="form-control" onChange={handleImageChange} />
+                            {imagePreview && (
+                                <img className="mb-3" src={imagePreview} alt="Preview Room Photo" style={{maxWidth: "400px", maxHeight: "400px"}} />
+                            )}
+                        </div>
+                        <div className="d-grid d-md-flex mt-2">
+                        <button className="btn btn-outline-primary ml-5">
+                            Save Room
+                        </button>
                         </div>
                     </form>
                 </div>
